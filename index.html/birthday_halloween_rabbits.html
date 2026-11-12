@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#170d25">
+<title>birthday.exe ♡</title>
+<style>
+:root{
+  --night:#100a19;--purple:#321849;--violet:#70418b;--lilac:#c99adf;
+  --orange:#dd7010;--red:#a83a4c;--cream:#fff0dc;--white:#fffaf5;
+  --ink:#21152b;--line:#a879bd;--shadow:0 14px 38px #0009;
+}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--night)}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--cream);
+ font-family:Verdana,Arial,sans-serif;
+ background:
+ radial-gradient(ellipse at 50% 0%,#ffeeaf6f 0,transparent 48%),
+ radial-gradient(circle at 15% 25%,#ff9b4218 0 2px,transparent 3px),
+ radial-gradient(circle at 82% 60%,#d5a4ef20 0 2px,transparent 3px),
+ linear-gradient(160deg,#120b1c,#21102d 55%,#0b0912);
+ background-size:auto,43px 43px,57px 57px,auto}
+button{font:inherit;cursor:pointer}
+.hidden{display:none!important}
+.screen{min-height:100svh;display:grid;place-items:center;padding:24px 15px;position:relative}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.7;
+ background-image:radial-gradient(#e19ff9 1px,transparent 1.5px),radial-gradient(#de7812 1px,transparent 1.5px);
+ background-size:79px 79px,113px 113px;background-position:0 0,31px 47px}
+.moon{position:fixed;right:8%;top:7%;width:78px;height:78px;border-radius:50%;
+ background:#df8217;box-shadow:0 0 28px #ff9b4266;opacity:.85;z-index:0}
+.moon:after{content:"";position:absolute;left:24px;top:-9px;width:75px;height:75px;border-radius:50%;background:#180e25}
+.decor{position:fixed;z-index:0;pointer-events:none;color:#d5a5ed88;font-size:22px}
+.decor.d1{left:4%;top:34%}.decor.d2{right:5%;top:48%}.decor.d3{left:10%;bottom:8%}
+.bunny-flight-layer{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+/* FLying Bunnies */
+
+.flying-bunny {
+    position: absolute;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.95;
+    filter: drop-shadow(0 5px 8px #0008);
+    will-change: transform;
+}
+
+/* Bunny 1 */
+.b1 {
+    width: 65px;
+    left: 0;
+    top: 12%;
+    animation: flyRight 19s linear -3s infinite;
+}
+
+/* Bunny 2 */
+.b2 {
+    width: 48px;
+    left: 0;
+    top: 28%;
+    animation: flyLeft 23s linear -11s infinite;
+}
+
+/* Bunny 3 */
+.b3 {
+    width: 55px;
+    left: 0;
+    top: 45%;
+    animation: flyRight 17s linear -8s infinite;
+}
+
+/* Bunny 4 */
+.b4 {
+    width: 75px;
+    left: 0;
+    top: 62%;
+    animation: flyLeft 25s linear -16s infinite;
+}
+
+/* Bunny 5 */
+.b5 {
+    width: 45px;
+    left: 0;
+    top: 75%;
+    animation: flyRight 21s linear -13s infinite;
+}
+
+/* Bunny 6 */
+.b6 {
+    width: 60px;
+    left: 0;
+    top: 87%;
+    animation: flyLeft 18s linear -5s infinite;
+}
+
+/* Bunny 7 */
+.b7 {
+    width: 38px;
+    left: 0;
+    top: 35%;
+    animation: flyRight 26s linear -20s infinite;
+}
+
+
+/* Movement */
+
+@keyframes flyRight {
+    0% {
+        transform: translateX(-120px) rotate(-10deg);
+    }
+
+    50% {
+        transform: translateX(50vw) translateY(-35px) rotate(10deg);
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 120px)) rotate(-5deg);
+    }
+}
+
+@keyframes flyLeft {
+    0% {
+        transform: translateX(calc(100vw + 120px)) scaleX(-1) rotate(10deg);
+    }
+
+    50% {
+        transform: translateX(50vw) translateY(35px) scaleX(-1) rotate(-10deg);
+    }
+
+    100% {
+        transform: translateX(-120px) scaleX(-1) rotate(5deg);
+    }
+}
+@keyframes flyBack{
+  0%{transform:translate3d(5vw,0,0) scaleX(-1) rotate(8deg)}
+  25%{transform:translate3d(-25vw,35px,0) scaleX(-1) rotate(-8deg)}
+  55%{transform:translate3d(-60vw,-30px,0) scaleX(-1) rotate(5deg)}
+  80%{transform:translate3d(-90vw,20px,0) scaleX(-1) rotate(-8deg)}
+  100%{transform:translate3d(-125vw,-10px,0) scaleX(-1) rotate(8deg)}
+}
+.retro-window{width:min(100%,430px);position:relative;z-index:3;background:hsl(284, 89%, 89%);color:#21152b;
+ border:2px solid #fff;border-right-color:#68536e;border-bottom-color:#68536e;padding:5px;box-shadow:4px 5px 0 #0007,var(--shadow)}
+.titlebar{min-height:30px;display:flex;align-items:center;justify-content:space-between;padding:5px 8px;
+ background:linear-gradient(90deg,#aa54ef,#8310c1);color:#fff;font-weight:bold;font-size:12px}
+.win-controls{display:flex;gap:3px}.win-controls span{width:18px;height:17px;display:grid;place-items:center;background:#e8ddeb;color:#321b3e;border:1px solid white;border-right-color:#6e5876;border-bottom-color:#6e5876}
+.window-content{text-align:center;padding:23px 18px 20px}
+.window-content h1{font: bold clamp(25px,7vw,34px) Georgia,serif;color:#251f91;margin:7px 0 10px}
+.window-content p{font-size:13px;line-height:1.6;margin:8px 0 20px}
+.btn-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.retro-btn{min-width:105px;padding:10px 18px;background:linear-gradient(#af1818,#af1818);color:#2c1935;font-weight:bold;
+ border:2px solid #fff;border-right-color:#78657f;border-bottom-color:#78657f;box-shadow:1px 1px 0 #9a7ca5}
+.retro-btn.primary{background:linear-gradient(#ea6111,#ea6111)}
+.retro-btn:active{transform:translate(1px,1px)}
+.welcome-rabbit{width:100px;height:100px;object-fit:contain;display:block;margin:0 auto 7px}
+
+/* Error storm and centered final dialog */
+#errorLayer{position:fixed;inset:0;z-index:20;overflow:hidden;pointer-events:none}
+.error-window{position:absolute;width:min(250px,68vw);padding:3px;background:#ded6e2;color:#1c1420;
+ border:2px solid white;border-right-color:#594a60;border-bottom-color:#594a60;box-shadow:4px 5px 0 #0008;
+ font:12px Arial,sans-serif;animation:pop .18s ease-out both}
+@keyframes pop{from{opacity:0;transform:scale(.65) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.error-title{display:flex;justify-content:space-between;padding:5px 6px;background:linear-gradient(90deg,#32124c,#78509a);color:#fff;font-weight:bold}
+.error-body{display:flex;align-items:center;gap:10px;padding:12px 8px;min-height:55px}
+.error-icon{font-size:25px;color:#c52f42;font-weight:bold}
+.error-footer{text-align:center;padding:0 0 7px}.error-footer span{display:inline-block;padding:4px 20px;border:1px solid #776b7b;background:#eee}
+.final-dim{position:fixed;inset:0;z-index:29;background:#08040dcc;backdrop-filter:blur(2px);pointer-events:auto}
+.error-final{pointer-events:auto;position:fixed;z-index:30;left:50%;top:50%;
+ transform:translate(-50%,-50%);width:min(440px,calc(100vw - 28px));padding:6px;
+ background:#e4d8e8;color:#21152b;border:3px solid #fff;border-right-color:#5e4c67;border-bottom-color:#5e4c67;
+ box-shadow:0 0 0 5px #9e65bd66,0 20px 70px #000e;font:14px Arial,sans-serif;
+ animation:finalAppear .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes finalAppear{from{opacity:0;transform:translate(-50%,-45%) scale(.75)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.error-final .titlebar{font-size:14px;padding:8px 10px}
+.error-final .error-body{justify-content:center;text-align:center;min-height:105px;font: bold clamp(18px,4.8vw,23px) Georgia,serif;color:#42234f;padding:22px 12px}
+.error-final .error-footer{padding:0 0 15px}
+.error-final .retro-btn{min-width:150px;padding:13px 24px;font-size:16px}
+
+/* Birthday scene */
+#birthdayScreen{display:block;position:relative;z-index:2;padding:25px 16px 35px}
+.scrapbook{width:min(1120px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(290px,.8fr);gap:35px;align-items:center;position:relative;z-index:2}
+.greeting-side{text-align:center;min-width:0}
+.eyebrow{display:inline-block;border:1px dashed #b887d0;color:#e9c5ff;padding:7px 13px;border-radius:30px;font-size:10px;letter-spacing:2px;text-transform:uppercase;background:#1b102a99}
+.hero-bunny-wrap{position:relative;width:min(100%,510px);margin:12px auto 0}
+.hero-bunny{display:block;width:100%;max-height:490px;object-fit:contain;filter:drop-shadow(0 12px 20px #0008)}
+.greeting-overlay{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:72%;color:#e89efd;
+ text-shadow:0 1px 0 rgba(6, 0, 0, 0.533);text-align:center;pointer-events:none}
+.greeting-overlay h2{font: bold clamp(24px,4vw,39px) Georgia,serif;margin:0 0 10px;color:#4c285a}
+.greeting-overlay p{white-space:pre-line;font:clamp(11px,1.5vw,15px)/1.65 Georgia,serif;margin:0}
+.greeting-overlay .signature{font:italic 15px Georgia,serif;margin-top:12px;color:#813f61}
+.album{min-width:0;padding:14px;background:#21132d;border:1px solid #9869b2;box-shadow:0 0 0 5px #4d2c6144,var(--shadow);transform:rotate(1deg)}
+.album-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:3px 4px 12px}
+.album-head h3{margin:0;color:#f5d8ff;font: bold 22px Georgia,serif}
+.album-head small{font-size:9px;letter-spacing:1px;color:#d5a8e9}
+.photo-reel{height:min(66svh,650px);min-height:340px;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:15px;
+ padding:8px 8px 18px;scroll-snap-type:y mandatory;overscroll-behavior:contain;touch-action:pan-y;
+ -webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#a66bc2 #281632}
+.photo-card{flex:0 0 auto;scroll-snap-align:start;position:relative;padding:9px 9px 28px;background:#fff4e8;
+ box-shadow:0 4px 14px #0008;transform:rotate(var(--tilt,-1deg))}
+.photo-card:nth-child(even){--tilt:1.2deg}
+.photo-card img{display:block;width:100%;height:clamp(175px,29vh,270px);object-fit:cover;background:#382342}
+.photo-card figcaption{position:absolute;bottom:7px;left:0;right:0;text-align:center;color:#e664e6;font:italic 12px Georgia,serif}
+.photo-placeholder{height:220px;display:grid;place-items:center;text-align:center;color:#e6c9f0;background:linear-gradient(135deg,#33203e,#5b3868);font:13px Georgia,serif}
+.photo-placeholder b{display:block;font-size:30px;margin-bottom:8px;color:#d97722}
+.album-controls{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 4px 2px;flex-wrap:wrap}
+.album-controls label,.album-controls button{font-size:11px;color:#f5dcff;background:#382344;border:1px solid #a477bb;padding:8px 10px}
+.album-controls input{display:none}
+.hint{text-align:center;color:#c59bd7;font-size:10px;margin:8px 0 0}
+.footer{text-align:center;color:#cda6df;font-size:10px;letter-spacing:2px;margin:22px 0 0}
+@media(max-width:760px){
+ .screen{padding:18px 13px}
+ .moon{width:55px;height:55px;right:7%;top:4%}.moon:after{width:53px;height:53px;left:18px;top:-7px}
+ #birthdayScreen{padding:17px 12px 28px}
+ .scrapbook{display:flex;flex-direction:column;gap:22px}
+ .greeting-side{width:100%}
+ .hero-bunny-wrap{width:min(100%,440px)}
+ .greeting-overlay{width:74%;top:49%}
+ .greeting-overlay h2{font-size:clamp(21px,6vw,31px)}
+ .greeting-overlay p{font-size:clamp(10px,3vw,13px)}
+ .album{width:100%;transform:none}
+ .photo-reel{height:56svh;min-height:300px;max-height:490px}
+ .photo-card img{height:clamp(190px,39svh,310px)}
+ .error-final{width:min(440px,calc(100vw - 24px))}
+ .error-final .error-body{min-height:95px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div><div class="moon" aria-hidden="true"></div>
+<div class="decor d1">✧</div><div class="decor d2">☽</div><div class="decor d3">✦</div>
+
+<!-- Bunny PNG files go into the images folder. Transparent PNG works best. -->
+<div class="bunny-flight-layer" aria-hidden="true">
+  <div class="bunny-flight-layer" aria-hidden="true">
+
+  <img class="flying-bunny b1" src="images/1.png" alt="">
+  <img class="flying-bunny b2" src="images/2.png" alt="">
+  <img class="flying-bunny b3" src="images/3.png" alt="">
+  <img class="flying-bunny b4" src="images/4.png" alt="">
+
+  <img class="flying-bunny b5" src="images/5.png" alt="">
+  <img class="flying-bunny b6" src="images/6.png" alt="">
+  <img class="flying-bunny b7" src="images/7.png" alt="">
+
+</div>
+</div>
+
+<main>
+<section class="screen" id="welcomeScreen">
+ <div class="retro-window">
+  <div class="titlebar"><span>♡ birthday.exe</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div>
+  <div class="window-content">
+   <img class="welcome-rabbit" src="images/кролик.png" alt="Кролик">
+   <h1>С днём рождения!</h1>
+<p>Интересно, да?<br>нажми на "нет" пожалуйста</p>
+   <div class="btn-row"><button class="retro-btn primary" id="startYes">Да</button><button class="retro-btn" id="startNo">Нет</button></div>
+  </div>
+ </div>
+</section>
+
+<div id="errorLayer" class="hidden" aria-live="polite"></div>
+
+<section id="birthdayScreen" class="hidden">
+ <div class="scrapbook">
+  <section class="greeting-side">
+   <span class="eyebrow">a little halloween birthday surprise</span>
+   <div class="hero-bunny-wrap">
+    <img class="hero-bunny" src="images/0.png" alt="Большой кролик">
+    <div class="greeting-overlay">
+     <h2>С днём рождения, тыковка!</h2>
+     <p id="birthdayMessage">Желаю тебе счастливых и волшебных дней, чтобы все твои самые заветные мечты сбывались. 
+Девятнадцать — это, несомненно, уже серьёзная цифра, но для меня ты всё равно остаёшься той самой семнадцатилетней Алиной, какой я тебя запомнила. 
+И честно, надеюсь, что в глубине души ты не будешь торопиться взрослеть. Да, это важно и нужно, но пусть в самые радостные минуты ты будешь такой же смифной и радостной</p>
+     <div class="signature" id="signature">с любовью ♡</div>
+    </div>
+   </div>
+  </section>
+
+  <section class="album" aria-label="Фотоальбом">
+   <div class="album-head"><div><h3>our little album</h3><small>MEMORIES • FOREVER</small></div><span>✧ ☾ ✧</span></div>
+   <div class="photo-reel" id="photoReel">
+    <!-- Replace photo-01.jpg ... photo-10.jpg inside the images folder. -->
+    <figure class="photo-card"><img src="images/photo-01.jpg" alt="Фото 1"><figcaption>memory no. 01 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-02.jpg" alt="Фото 2"><figcaption>memory no. 02 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-03.jpg" alt="Фото 3"><figcaption>memory no. 03 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-04.jpg" alt="Фото 4"><figcaption>memory no. 04 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-05.jpg" alt="Фото 5"><figcaption>memory no. 05 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-06.jpg" alt="Фото 6"><figcaption>memory no. 06 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-07.jpg" alt="Фото 7"><figcaption>memory no. 07 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-08.jpg" alt="Фото 8"><figcaption>memory no. 08 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-09.jpg" alt="Фото 9"><figcaption>memory no. 09 ♡</figcaption></figure>
+    <figure class="photo-card"><img src="images/photo-10.jpg" alt="Фото 10"><figcaption>memory no. 10 ♡</figcaption></figure>
+   </div>
+   <div class="album-controls">
+    <label for="photoUpload">＋ Заменить фото с телефона</label>
+    <button id="scrollTopBtn" type="button">↑ В начало</button>
+    <input id="photoUpload" type="file" accept="image/*" multiple>
+   </div>
+   <p class="hint">бебебе ♡</p>
+  </section>
+ </div>
+ <div class="footer">MADE WITH ♡ UNDER THE MOON</div>
+</section>
+</main>
+
+<script>
+(() => {
+ "use strict";
+ const welcome=document.getElementById("welcomeScreen");
+ const birthday=document.getElementById("birthdayScreen");
+ const layer=document.getElementById("errorLayer");
+ const yes=document.getElementById("startYes");
+ const no=document.getElementById("startNo");
+ const photoUpload=document.getElementById("photoUpload");
+ const reel=document.getElementById("photoReel");
+ let timer=null, count=0, finalTimeout=null;
+
+ const messages=[
+  "Birthday.exe has stopped working.",
+  "Critical cuteness error!",
+  "System failure: too much cake.",
+  "Warning: birthday magic detected.",
+  "Access denied. You are too fabulous.",
+  "Error 404: boring birthday not found.",
+  "Unexpected amount of happiness!"
+ ];
+
+ function openBirthday(){
+  if(timer) clearInterval(timer);
+  if(finalTimeout) clearTimeout(finalTimeout);
+  layer.classList.add("hidden");layer.innerHTML="";
+  welcome.classList.add("hidden");birthday.classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+ }
+ function addError(){
+  const box=document.createElement("div");
+  box.className="error-window";
+  const maxX=Math.max(5,window.innerWidth-265);
+  const maxY=Math.max(5,window.innerHeight-130);
+  box.style.left=Math.floor(Math.random()*maxX)+"px";
+  box.style.top=Math.floor(Math.random()*maxY)+"px";
+  const title=document.createElement("div");title.className="error-title";
+  title.innerHTML="<span>System Error</span><span>×</span>";
+  const body=document.createElement("div");body.className="error-body";
+  const icon=document.createElement("span");icon.className="error-icon";icon.textContent="✖";
+  const message=document.createElement("span");message.textContent=messages[count++%messages.length];
+  body.append(icon,message);
+  const footer=document.createElement("div");footer.className="error-footer";
+  const ok=document.createElement("span");ok.textContent="OK";footer.append(ok);
+  box.append(title,body,footer);layer.append(box);
+  while(layer.querySelectorAll(".error-window").length>16) layer.querySelector(".error-window").remove();
+ }
+ function showFinal(){
+  if(timer)clearInterval(timer);
+  const dim=document.createElement("div");dim.className="final-dim";
+  const dialog=document.createElement("div");dialog.className="error-final";
+  const title=document.createElement("div");title.className="titlebar";
+  title.innerHTML="<span>One last question.exe</span><span>×</span>";
+  const body=document.createElement("div");body.className="error-body";
+  body.textContent="Хочешь всё-таки продолжить?";
+  const footer=document.createElement("div");footer.className="error-footer";
+  const button=document.createElement("button");button.className="retro-btn primary";
+  button.textContent="ДА";
+  button.addEventListener("click",openBirthday,{once:true});
+  footer.append(button);dialog.append(title,body,footer);
+  layer.append(dim,dialog);
+ }
+ function startErrors(){
+  count=0;layer.innerHTML="";layer.classList.remove("hidden");
+  addError();timer=setInterval(addError,370);
+  finalTimeout=setTimeout(showFinal,4300);
+ }
+ yes.addEventListener("click",openBirthday);
+ no.addEventListener("click",startErrors);
+
+ // Optional: select up to 10 images from your phone to preview them in the gallery.
+ // For a permanent website, also copy those files into the images folder and name them photo-01.jpg ... photo-10.jpg.
+ photoUpload.addEventListener("change",event=>{
+  const files=Array.from(event.target.files||[]).filter(file=>file.type.startsWith("image/")).slice(0,10);
+  if(!files.length)return;
+  const cards=Array.from(reel.querySelectorAll(".photo-card"));
+  files.forEach((file,index)=>{
+   const card=cards[index];if(!card)return;
+   const img=card.querySelector("img");
+   const oldUrl=img.dataset.objectUrl;if(oldUrl)URL.revokeObjectURL(oldUrl);
+   const url=URL.createObjectURL(file);img.src=url;img.dataset.objectUrl=url;
+   card.querySelector("figcaption").textContent=file.name.replace(/\.[^.]+$/,"").replace(/[_-]/g," ")||`memory no. ${index+1}`;
+  });
+  photoUpload.value="";
+ });
+ document.getElementById("scrollTopBtn").addEventListener("click",()=>reel.scrollTo({top:0,behavior:"smooth"}));
+})();
+</script>
+</body>
+</html>
